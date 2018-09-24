@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<script src="/object/jquery/jquery-3.2.1.min.js"></script>
+	<script src="/object/js/bootstrap.bundle.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="/object/css/bootstrap.css">
+	<!-- Load icon library -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
+	<style>
+
+		body {
+		    font-family: Arial;
+		}
+
+		* {
+		    box-sizing: border-box;
+		}
+
+	</style>
+	<meta charset="utf-8" />
+	<title>
+		Alta
+	</title>
+	</head>
+	<body>
+		
+		<form action="alta.php" method="post">
+			<div class="container" align="center">
+				<h1>Alta de socios</h1>
+				<div class="card text-center" style="width: 18rem;">
+				  <div class="card-body">
+				    <p class="card-text">
+				    	Nombre <input type="text" name="nombre" required minlength="3">
+				    </p>
+				  </div>
+				</div>
+				<div class="card text-center" style="width: 18rem;">
+				  <div class="card-body">
+				    <p class="card-text">
+				    	Apellido <input type="text" name="apellido" required minlength="3">
+				    </p>
+				  </div>
+				</div>
+				<div class="card text-center" style="width: 18rem;">
+				  <div class="card-body">
+				    <p class="card-text">
+				    	Telefono <input type="number" name="telefono" required min="2000000">
+				    </p>
+				  </div>
+				</div>
+				<div class="card text-center" style="width: 18rem;">
+				  <div class="card-body">
+				    <p class="card-text">
+				    	DNI <input type="number" name="DNI" required min="10000000" >
+				    </p>
+				  </div>
+				</div>
+				<div class="card text-center" style="width: 18rem;">
+				  <div class="card-body">
+				    <p class="card-text">
+				    	Direccion <input type="text" name="direccion" required minlength="8">
+				    </p>
+				  </div>
+				</div>
+				<div class="card text-center" style="width: 18rem;">
+				  <div class="card-body">
+				    <p class="card-text">
+				    	Actividad 
+				    	<select name="actividad">
+				    	</select>
+				    </p>
+				  </div>
+				</div>
+				<div class="card text-center" style="width: 18rem;">
+				  <div class="card-body">
+				    <p class="card-text">
+				    	<input type="submit" value="Agregar socio" class="btn btn btn-primary">
+				    </p>
+				   </div>
+				</div>
+			</form>
+			<div class="card text-center" style="width: 18rem;">
+			   <div class="card-body">
+			    <p class="card-text">
+			    	<a href="index.html" class="btn btn btn-primary"> Volver al Inicio </a>
+			    </p>
+			  </div>
+			</div>
+		</div>
+
+	</body>
+</html>
