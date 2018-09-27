@@ -103,7 +103,8 @@
 				$insercion -> bindValue(':e',$direccion);
 				
 				// Preparo la sentencia INSERT para tabla pivot:
-				$activityselect = $pdo -> prepare("INSERT INTO socio.actividad (socio_id, actividad_id) VALUES (:f,);");
+				$activityselect = $pdo -> prepare("INSERT INTO socio.actividad (socio_id, actividad_id) 
+					VALUES (:f);");
 
 				// Verifico DNI mediante que no exista el socio mediante un Select:
 				$socioexiste = $pdo -> prepare("SELECT id from socios WHERE DNI = $DNI");
@@ -114,23 +115,23 @@
 				$activityselect -> bindValue(':f',$actividad);
 				$activityselect -> execute ();
 				//Ejecutamos la sentencia preparada antes:
-			   	if ($row1 == true){
-				   		if ($insercion -> execute() ) {
-						    //Si la inserción fue exitosa:
-						    echo "El socio fue agregado."."<br><br>";
-						    if ($activityselect -> execute() ){
-						    	echo "Funciono el segundo select";
-						    }
-						    else
-						    	echo "No funciono el segundo select";
-						}
-						else {
-						    echo "Error al agregar al socio";
-						}
+			   	//if ($row1 == true){
+				if ($insercion -> execute() ) {
+				 //Si la inserción fue exitosa:
+					echo "El socio fue agregado."."<br><br>";
+					if ($activityselect -> execute() ){
+					   	echo "Funciono el segundo select";
+					    }
+					else{
+					  	echo "No funciono el segundo select";
 					}
-					else {
-						echo "El socio ingresado ya existe. ";
-					}	
+				}
+				else {
+				    echo "Error al agregar al socio";
+				}
+					//else {
+					//	echo "El socio ingresado ya existe. ";
+					//}	
 				
 			?>
 			<a href="crud.php" class="btn btn btn-primary"> Volver a la página de socios </a>

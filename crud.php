@@ -78,7 +78,8 @@
 						//La función conectar() está definida en Conectar.php, y conecta a la BD, 
 						//retornando un objeto de clase PDO con la conexión.
 
-						$consulta = $pdo->prepare("SELECT nombre, apellido, DNI, id_socio FROM socios;");
+						$consulta = $pdo->prepare("SELECT socios.nombre as socio, socios.apellido, socios.DNI, socios.id, socio_actividad.actividad_id, actividades.nombre as actividades FROM socios LEFT JOIN socio_actividad ON socios.id = socio_actividad.socio_id LEFT JOIN actividades ON socio_actividad.actividad_id = actividades.id;");
+
 						//Aqui no hay parámetros, puede ejecutarse esta consulta con
 						// $pdo->query(), lo omitimos por brevedad.
 
@@ -92,6 +93,7 @@
 										<th scope="col">Nombre</th>
 										<th scope="col">Apellido</th>
 										<th scope="col">DNI</th>
+										<th scope="col">Actividad </th>
 										<th scope="col">Editar</th>
 										<th scope="col">Borrar</th>
 									</tr>
@@ -99,14 +101,21 @@
 								<tbody>';
 									foreach ($resultado as $elSocio) {
 									    echo '<tr>';
-									    echo '<td>'.$elSocio['nombre'].'</td>';
-									    echo '<td>'.$elSocio['apellido'].'</td>';
-									    echo '<td style="text-align=center">'.$elSocio['DNI'].'</td>';
+									    echo '<td>'. $elSocio['socio']. '</td>';
+									    echo '<td>'. $elSocio['apellido'] .'</td>';
+									    echo '<td style="text-align=center">'. $elSocio['DNI'] .'</td>';
+									    echo '<td>';
+									   	if ($elSocio['actividades']==null) {
+									    	echo 'Sin asignar </td>';
+									    	}
+									    else {
+									    	echo $elSocio['actividades'] .'</td>'; 
+									    }
 
 									    //Celda con el link para editar:
 
 									    echo '<td>
-									    		<a href="modificar.php?id='.$elSocio['id_socio'].'">
+									    		<a href="modificar.php?id='.$elSocio['id'].'">
 									    			<button class="btn btn-info">
 										    			<i class="far fa-edit"></i>
 									    			</button>
@@ -147,7 +156,7 @@
 
 									    //Celda con el link para eliminar:
 									    echo '<td>
-									    		<a href="baja.php?id='.$elSocio['id_socio'].'">
+									    		<a href="baja.php?id='.$elSocio['id'].'">
 									    			<button class="btn btn-danger">
 										    			<i class="far fa-trash-alt"></i>	
 										    		</button>
